@@ -1,3 +1,4 @@
 Django==5.2.1
 psycopg2-binary #для postqresgl
 requests
+requests-mock
