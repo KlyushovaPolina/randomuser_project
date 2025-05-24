@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   db:
-    image: postgres:latest
+    image: postgres:17.5
     environment:
       POSTGRES_DB: randomuser
       POSTGRES_USER: user
