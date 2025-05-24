@@ -1,8 +1,11 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8" />
     <title>Случайный пользователь</title>
+    <link rel="stylesheet" href="{% static 'users/css/style.css' %}">
 </head>
 <body>
     <h1>Случайный пользователь</h1>
@@ -11,7 +14,7 @@
         <p style="color: red;">{{ error }}</p>
     {% else %}
         <h2>{{ user.first_name }} {{ user.last_name }}</h2>
-        <img src="{{ user.picture }}" alt="Фото {{ user.first_name }}" />
+        <img class="user-photo" src="{{ user.picture }}" alt="Фото {{ user.first_name }}" />
         <p><strong>Пол:</strong> {{ user.gender }}</p>
         <p><strong>Телефон:</strong> {{ user.phone }}</p>
         <p><strong>Email:</strong> {{ user.email }}</p>

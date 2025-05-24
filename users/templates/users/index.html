@@ -1,38 +1,65 @@
-<form method="post">
-    {% csrf_token %}
-    <label for="count">Сколько пользователей загрузить:</label>
-    <input type="number" name="count" id="count" min="1">
-    <button type="submit">Загрузить</button>
-</form>
+{% load static %}
 
-<table>
-    <thead>
-        <tr>
-            <th>Фото</th><th>Пол</th><th>Имя</th><th>Фамилия</th><th>Телефон</th><th>Email</th><th>Местоположение</th><th>Подробнее</th>
-        </tr>
-    </thead>
-    <tbody>
-        {% for user in page_obj %}
-        <tr>
-            <td><img src="{{ user.picture }}" width="50"></td>
-            <td>{{ user.gender }}</td>
-            <td>{{ user.first_name }}</td>
-            <td>{{ user.last_name }}</td>
-            <td>{{ user.phone }}</td>
-            <td>{{ user.email }}</td>
-            <td>{{ user.location }}</td>
-            <td><a href="{% url 'user-detail' user.pk %}">Открыть</a></td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>Список пользователей</title>
+    <link rel="stylesheet" href="{% static 'users/css/style.css' %}">
+</head>
+<body>
+    <h1>Список пользователей</h1>
 
-<div>
-    {% if page_obj.has_previous %}
-        <a href="?page={{ page_obj.previous_page_number }}">Назад</a>
-    {% endif %}
-    Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}
-    {% if page_obj.has_next %}
-        <a href="?page={{ page_obj.next_page_number }}">Вперёд</a>
-    {% endif %}
-</div>
+    <form method="post" action="{% url 'index' %}">
+        {% csrf_token %}
+        <label for="count">Количество пользователей для загрузки:</label>
+        <input type="number" id="count" name="count" min="1" max="1000" required>
+        <button type="submit">Загрузить</button>
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Фото</th>
+                <th>Пол</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Телефон</th>
+                <th>Email</th>
+                <th>Местоположение</th>
+                <th>Подробнее</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in page_obj %}
+            <tr>
+                <td><img class="user-photo" src="{{ user.picture }}" alt="Фото {{ user.first_name }}"></td>
+                <td>{{ user.gender }}</td>
+                <td>{{ user.first_name }}</td>
+                <td>{{ user.last_name }}</td>
+                <td>{{ user.phone }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.location }}</td>
+                <td><a href="{% url 'user-detail' user.id %}">Подробнее</a></td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="8">Пользователи не найдены</td></tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="pagination">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; Первая</a>
+            <a href="?page={{ page_obj.previous_page_number }}">&lt; Назад</a>
+        {% endif %}
+
+        <span class="current">Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">Вперёд &gt;</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Последняя &raquo;</a>
+        {% endif %}
+    </div>
+</body>
+</html>

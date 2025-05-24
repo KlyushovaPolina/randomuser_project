@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background: #f5f7fa;
+    color: #333;
+}
+
+h1, h2 {
+    color: #2c3e50;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #3498db;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f6fc;
+}
+
+img.user-photo {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+}
+
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+form input[type="number"] {
+    width: 80px;
+    padding: 6px;
+    margin-right: 10px;
+}
+
+form button {
+    padding: 6px 15px;
+    background-color: #3498db;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+form button:hover {
+    background-color: #2980b9;
+}
+
+.pagination {
+    margin-top: 20px;
+}
+
+.pagination span, .pagination a {
+    padding: 6px 10px;
+    margin: 0 3px;
+    border: 1px solid #3498db;
+    color: #3498db;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.pagination .current {
+    background-color: #3498db;
+    color: white;
+    pointer-events: none;
+}
+
+.pagination a:hover {
+    background-color: #2980b9;
+    color: white;
+}
