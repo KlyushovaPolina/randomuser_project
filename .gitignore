@@ -1,0 +1,19 @@
+# Virtual environment
+.env/
+.venv/
+venv/
+env/
+
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+media/
+staticfiles/
+
+# IDE & OS
+.idea/
+.vscode/
+.DS_Store
