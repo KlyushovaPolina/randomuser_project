@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>Пользователь: {{ user.first_name }} {{ user.last_name }}</title>
+</head>
+<body>
+    <h1>{{ user.first_name }} {{ user.last_name }}</h1>
+    <img src="{{ user.picture }}" alt="Фото {{ user.first_name }}" />
+    <p><strong>Пол:</strong> {{ user.gender }}</p>
+    <p><strong>Телефон:</strong> {{ user.phone }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>Местоположение:</strong> {{ user.location }}</p>
+
+    <p><a href="{% url 'index' %}">← Назад к списку пользователей</a></p>
+</body>
+</html>

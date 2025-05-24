@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <title>Случайный пользователь</title>
+</head>
+<body>
+    <h1>Случайный пользователь</h1>
+
+    {% if error %}
+        <p style="color: red;">{{ error }}</p>
+    {% else %}
+        <h2>{{ user.first_name }} {{ user.last_name }}</h2>
+        <img src="{{ user.picture }}" alt="Фото {{ user.first_name }}" />
+        <p><strong>Пол:</strong> {{ user.gender }}</p>
+        <p><strong>Телефон:</strong> {{ user.phone }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+        <p><strong>Местоположение:</strong> {{ user.location }}</p>
+    {% endif %}
+
+    <p><a href="{% url 'index' %}">← Назад к списку пользователей</a></p>
+</body>
+</html>
