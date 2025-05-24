@@ -1,28 +1,23 @@
-
 from django.core.paginator import Paginator
 from django.views.decorators.http import require_http_methods
-from rest_framework import generics
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import User
-from .serializers import UserSerializer
 import random
 import requests
 
-@api_view(['GET'])
 def user_detail(request, user_id):
     user = get_object_or_404(User, id=user_id)
-    return Response(UserSerializer(user).data)
+    return render(request, 'users/user_detail.html', {'user': user})
 
-@api_view(['GET'])
+
 def random_user(request):
     count = User.objects.count()
     if count == 0:
-        return Response({"error": "No users in DB"})
+        return render(request, 'users/random_user.html', {'error': 'No users in DB'})
+
     random_index = random.randint(0, count - 1)
     user = User.objects.all()[random_index]
-    return Response(UserSerializer(user).data)
+    return render(request, 'users/random_user.html', {'user': user})
 
 @require_http_methods(["GET", "POST"])
 def index(request):
